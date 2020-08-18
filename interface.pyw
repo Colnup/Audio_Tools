@@ -1,7 +1,5 @@
-"""Interface grapgique Tktiner pour le projet audio_tools
+"""Tkinter Graphical interface for the Audio Tools Project
 """
-
-# Autre Push depuis l'interface.pyw
 
 from tkinter import *
 from tkinter import ttk
@@ -10,28 +8,27 @@ from downloader import download
 
 
 class App(Tk):
-    """Fenêtre mère de l'application
+    """Root windown of the app
     """
 
     def __init__(self, title="App"):
-        """Constructeur de la classe App
+        """App class init
 
         Parameters
         ----------
         title : str, optional
-            Titre de la fenêtre que l'on crée, by default "App"
+            Title of the created window, by default "App"
         """
+
         Tk.__init__(self)
         self.wm_title(title)
 
 
 class Window(ttk.Frame):
-    """Classe héritant de frame permettant un thème graphique global
+    """Child of the ttk.Frame class, allowing an easier way to have a global theme for the frames in the app
     """
 
     def __init__(self, master=None, **kwargs):
-        """Constructeur de la calsse Window
-        """
         ttk.Frame.__init__(self, master, borderwidth=5,
                            relief="sunken", **kwargs)
         self.master = master
@@ -39,15 +36,15 @@ class Window(ttk.Frame):
 
 
 def proceed(*args):
-    # Le *args c'est juste pour que ça plante pas à cause du bind avec la touche entrée
+    # *args is necessary beacuse of the bind to the enter key of the keyboard
     options = {
         "format": formattage.get(),
         "noplaylist": playlist.get(),
     }
-    status.set("Status :\nTéléchargement en cours")
+    status.set("Status :\nDownloading...")
     status_label.update()
     download(text.get(), **options)
-    status.set("Status :\nEn attente d'un téléchargement")
+    status.set("Status :\nWaiting for a downlaod...")
     text.set("")
 
 
@@ -63,15 +60,15 @@ audio = ttk.Radiobutton(content, text="Audio",
                         variable=formattage, value="bestaudio")
 video = ttk.Radiobutton(content, text="Vidéo",
                         variable=formattage, value="best")
-downaload_button = ttk.Button(content, text="SHNELL",
+downaload_button = ttk.Button(content, text="Proceed",
                               command=proceed)
 playlist = BooleanVar()
 playlist.set(False)
 playlist_button = ttk.Checkbutton(
-    content, text="Télécharger la playlist (le cas échéant)", variable=playlist,
+    content, text="Download the playlist (if appropriate)", variable=playlist,
     onvalue=False, offvalue=True)
 status = StringVar()
-status.set("Status :\nEn attente d'un téléchargement")
+status.set("Status :\nWaiting for a downlaod...")
 status_label = ttk.Label(content, textvar=status, justify="center")
 
 

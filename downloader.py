@@ -7,11 +7,11 @@ from youtube_dl import YoutubeDL
 
 
 def download(url, **args):
-    # Paramètres par défaut
+    # Default parameters
     ydl_opts = {
         "format": "bestaudio/best",
-        "outtmpl": "C:/%HOMEPATH%/Desktop/Musique/new/%(title)s.%(ext)s",
-        "noplaylist": True,
+        "outtmpl": "C:/%HOMEPATH%/Desktop/Music/new/%(title)s.%(ext)s",
+        "noplaylist": False,
         "quiet": True,
         "no_warnings": False,
         "simulate": False,
@@ -32,4 +32,5 @@ def download(url, **args):
 
 
 if __name__ == "__main__":
+    # Test if the downloader works correctly
     download("https://www.youtube.com/watch?v=PKfxmFU3lWY, bestaudio")
