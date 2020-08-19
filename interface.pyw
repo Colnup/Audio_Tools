@@ -1,10 +1,16 @@
 """Tkinter Graphical interface for the Audio Tools Project
 """
 
+import sys
 from tkinter import *
 from tkinter import ttk
-import time
+
 from downloader import download
+
+
+log_file = open("logs.txt", "w")
+sys.stdout = log_file
+sys.stderr = log_file
 
 
 class App(Tk):
@@ -44,7 +50,7 @@ def proceed(*args):
     status.set("Status :\nDownloading...")
     status_label.update()
     download(text.get(), **options)
-    status.set("Status :\nWaiting for a downlaod...")
+    status.set("Status :\nWaiting for a download...")
     text.set("")
 
 
@@ -68,7 +74,7 @@ playlist_button = ttk.Checkbutton(
     content, text="Download the playlist (if appropriate)", variable=playlist,
     onvalue=False, offvalue=True)
 status = StringVar()
-status.set("Status :\nWaiting for a downlaod...")
+status.set("Status :\nWaiting for a download...")
 status_label = ttk.Label(content, textvar=status, justify="center")
 
 

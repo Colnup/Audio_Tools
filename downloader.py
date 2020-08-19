@@ -6,31 +6,32 @@ from youtube_dl import YoutubeDL
 #         print("Done downloading, now converting ...")
 
 
-def download(url, **args):
+def download(url, **opts):
+
     # Default parameters
     ydl_opts = {
         "format": "bestaudio/best",
         "outtmpl": "C:/%HOMEPATH%/Desktop/Music/new/%(title)s.%(ext)s",
         "noplaylist": False,
-        "quiet": True,
+        "quiet": False,
         "no_warnings": False,
         "simulate": False,
         "nooverwrites": True,
         "writedescription": False,
+        "default_search": "auto",
+        "ignoreerrors": True,
 
         # "progress_hooks": [my_hook],
+
     }
 
+    # Since you can download multiple URLs, you need a list. If there is only one str, we put it in a list
     if type(url) == str:
         url = [url]
 
-    for i in args.items():
+    # Replace any default option with the one we give inside the opts dictionnary
+    for i in opts.items():
         ydl_opts[i[0]] = i[1]
 
     with YoutubeDL(ydl_opts) as ydl:
         ydl.download(url)
-
-
-if __name__ == "__main__":
-    # Test if the downloader works correctly
-    download("https://www.youtube.com/watch?v=PKfxmFU3lWY, bestaudio")
