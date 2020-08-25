@@ -5,7 +5,43 @@ import sys
 from tkinter import *
 from tkinter import ttk
 
-from downloader import download
+from youtube_dl import YoutubeDL
+
+
+def progress_bar_update(d):
+    global current_progress
+    global progress_bar
+    if d["status"] == "downloading":
+        current_progress.set(float(d["_percent_str"][0:-1]))
+        progress_bar.update()
+    if d["status"] == "finished":
+        current_progress.set(0.0)
+
+
+def download(url, **opts):
+
+    # Default parameters
+    ydl_opts = {
+        "format": "bestaudio/best",
+        "outtmpl": "C:/%HOMEPATH%/Desktop/Music/new/%(title)s.%(ext)s",
+        "noplaylist": False,
+        "quiet": True,
+        "no_warnings": False,
+        "simulate": False,
+        "nooverwrites": True,
+        "writedescription": False,
+        "default_search": "auto",
+        "ignoreerrors": True,
+
+        "progress_hooks": [progress_bar_update],
+
+    }
+    if type(url) == str:
+        url = [url]
+    for i in opts.items():
+        ydl_opts[i[0]] = i[1]
+    with YoutubeDL(ydl_opts) as ydl:
+        ydl.download(url)
 
 
 log_file = open("logs.txt", "w")
@@ -47,10 +83,7 @@ def proceed(*args):
         "format": formattage.get(),
         "noplaylist": playlist.get(),
     }
-    status.set("Status :\nDownloading...")
-    status_label.update()
     download(text.get(), **options)
-    status.set("Status :\nWaiting for a download...")
     text.set("")
 
 
@@ -73,9 +106,10 @@ playlist.set(False)
 playlist_button = ttk.Checkbutton(
     content, text="Download the playlist (if appropriate)", variable=playlist,
     onvalue=False, offvalue=True)
-status = StringVar()
-status.set("Status :\nWaiting for a download...")
-status_label = ttk.Label(content, textvar=status, justify="center")
+
+current_progress = DoubleVar(content, 0.0)
+progress_bar = ttk.Progressbar(
+    content, mode="determinate", variable=current_progress)
 
 
 content.grid(column=0, row=0, sticky=(N, S, E, W))
@@ -84,7 +118,7 @@ audio.grid(column=0, row=1, sticky=(E, W))
 video.grid(column=0, row=2, sticky=(E, W))
 playlist_button.grid(column=0, row=3, sticky=(E, W))
 downaload_button.grid(column=1, row=3)
-status_label.grid(column=1, row=2)
+progress_bar.grid(column=0, row=4, columnspan=2, sticky=(E, W))
 
 
 root.columnconfigure(0, weight=1)
