@@ -18,27 +18,33 @@ Simply run the interface.pyw script. Then, you will be provided with a simple in
 
 ## Install and Prerequites :
 
-First, you need to have python 3.2+ (latest version is recommanded thought) installed with tkinter integrated with it.
+You need to have [git](https://gitforwindows.org/) installed and setup for this to work : run the `installer.exe` which will install python and youtube-dl and will run the main program
 
-Then, run these commands :
+
+
+If it doesn't work :
+
+Manually install python and git, then, run these commands if you are on linux :
 
 ```bash
-sudo pip3 install --upgrade pip
-sudo pip3 install --upgrade youtube-dl
+sudo pip3 install --upgrade pip
+
+sudo pip3 install --upgrade youtube-dl
 ```
 
-Or, if you are on windows, run this in a cmd shell with administrator rights:
+Or, if you are on windows, run this in a cmd shell with administrator rights:
 
 ```batch
-pip3 install --upgrade pip
-pip3 install --upgrade youtube-dl
+pip3 install --upgrade pip
+
+pip3 install --upgrade youtube-dl
 ```
 
-Finally, you can run the `interface.pyw` and it will work fine.
+Finally, you can run the `interface.pyw`.
 
 ## Bug Report or issues
 
-If you encounter any bug using Audio tools, any issues or simply want to upgrade the code, don't hesitate and go ahead open an issue [here](https://github.com/Colnup/Audio_Tools/issues/new). There is no template whatsoever, but just don't throw a "It doesn't work". You could also please format the title like this : `[proposed Label] actual title` wether the proposed label is a bug report, request or something else.
+If you encounter any bug using Audio tools, any issues or simply want to upgrade the code, don't hesitate and go ahead open an issue [here](https://github.com/Colnup/Audio_Tools/issues/new). There is no template whatsoever, but just don't throw a "It doesn't work". Please format the title like this : `[proposed Label] actual title` wether the proposed label is a bug report, request or something else.
 
 ## About the project
 
