@@ -6,6 +6,13 @@ from youtube_dl import YoutubeDL
 
 
 def download(url, **opts):
+    """Downloader function which downloads a url
+
+    Parameters
+    ----------
+    url : str or list
+        URLs to download. Downloads automatically to the floder "%HOMEDIR%/desktop/Music/New"
+    """
 
     # Default parameters
     ydl_opts = {
