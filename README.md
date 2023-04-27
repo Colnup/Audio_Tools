@@ -8,8 +8,6 @@ Simply run the interface.pyw script. Then, you will be provided with a simple in
 
 ## Current Features :
 
-- Automatic link recognition, wether it's a link or search on youtube
-
 - Select wether to download in a video or audio format
 
 - Whole youtube playlist download (on by default)
@@ -18,27 +16,31 @@ Simply run the interface.pyw script. Then, you will be provided with a simple in
 
 ## Install and Prerequites :
 
-You need to have [git](https://gitforwindows.org/) installed and setup for this to work : run the `installer.exe` which will install python and youtube-dl and will run the main program
+### Prerequites :
 
+Download and install [Python](https://www.python.org/downloads/) (version 3.10 or higher) and [Git](https://git-scm.com/downloads) (version 2.0 or higher).
 
+### Install :
 
-If it doesn't work :
+Download the latest release [here](https://github.com/Colnup/Audio_Tools/releases/latest) and extract it.
 
-Manually install python and git, then, run these commands if you are on linux :
+Then, open a terminal in the extracted folder and run these commands if you are on linux :
 
 ```bash
 sudo pip3 install --upgrade pip
 
 sudo pip3 install --upgrade youtube-dl
 ```
+Or, if you are on windows, run this in a cmd shell with administrator rights:
 
-Or, if you are on windows, run this in a cmd shell with administrator rights:
+```cmd
 
-```batch
-pip3 install --upgrade pip
+py -m pip install --upgrade pip
 
-pip3 install --upgrade youtube-dl
+py -m pip install --upgrade youtube-dl
 ```
+
+
 
 Finally, you can run the `interface.pyw`.
 
@@ -50,4 +52,23 @@ If you encounter any bug using Audio tools, any issues or simply want to upgrade
 
 This project is a side project, with only me working on it, and will most likely not be worked on nor updated for long periods of time. If you would like to see a feature added, open an issue and I will try to implement it.
 
-You could also use the `downloader.py` as a library, there are defaults settings that I believe are quiet good. So, feel free to implement this in any of your projects (remember to cite the [GitHub](https://github.com/Colnup/Audio_Tools) webpage in your project).
+
+## What happened to the old version ?
+
+As a developer, I like to keep my code clean and readable. The old version was a mess, and I decided to rewrite it from scratch. The old version is still available [here](https://github.com/Colnup/Audio_Tools/releases/tag/v0.3-alpha) if you want to check it out, but it is not maintained anymore.
+
+The new version brings more stability, a better interface and a better code overall.
+
+Still, there are missing features from the old version, namely:
+
+- The `downloader.py` library. This library was a front-end for youtube-dl, and since we switched to yt-dlp, it is not compatible anymore. This library won't be re-implemented, but you can check the new `downloader.py` which contains some similar code that you can use.
+- The automatic installer. This feature was an experiment for me, and it was buggy and not working properly. It won't be re-implemented for now, but with enough requests, I might do it.
+- The log file. This feature was not really useful, as you can just check the console for the logs. It won't be re-implemented for now, but with enough requests, I might do it.
+- Automatic youtube search from the url bar. This will be re-implemented in the future, but it is not a priority for now.
+
+
+## License
+
+This project is licensed under the Creative Commons CC-BY 4.0 License.
+
+This means that you can use, modify and redistribute this project, as long as you credit me. Feel free to use this project for any purpose, commercial or not.
